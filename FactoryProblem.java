@@ -2,6 +2,14 @@ import java.util.Scanner;
 import java.io.*;
 
 public class FactoryProblem {
+   public static int findTime(int n, int e1, int e2, int x1, int x2, int[] a1, int[] a2, int[] t1, int[] t2) {
+
+   }
+
+   public static int findRoute(int n, int e1, int e2, int x1, int x2, int[] a1, int[] a2, int[] t1, int[] t2) {
+      
+   }
+
    public static void main(String[] args) {
       Scanner in = new Scanner(System.in);
       
