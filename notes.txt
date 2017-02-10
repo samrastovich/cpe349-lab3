@@ -1,0 +1,6 @@
+Each assembly line has n stations, numbered j = 1, 2, .... n
+Jth station on line i = S[i,j]
+Entry time e[i]
+Exit time x[i]
+For rush, chassis still goes through n stations, but chassis may switch from one AL to another
+Time to transfer chassis away from line i after going through station S[i,j] is t[i,j] where i = 1, 2 and j = 1, 2, .... n-1

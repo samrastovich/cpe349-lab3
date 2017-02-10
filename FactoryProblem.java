@@ -2,6 +2,14 @@ import java.util.Scanner;
 import java.io.*;
 
 public class FactoryProblem {
+   public static int findTime(int n, int e1, int e2, int x1, int x2, int[] a1, int[] a2, int[] t1, int[] t2) {
+      //Should return the fastest time to exit the assembly lines
+   }
+
+   public static int findRoute(int n, int e1, int e2, int x1, int x2, int[] a1, int[] a2, int[] t1, int[] t2) {
+      //Should return the route with the fastest time (using solution from findTime)
+   }
+
    public static void main(String[] args) {
       Scanner in = new Scanner(System.in);
       
@@ -12,6 +20,7 @@ public class FactoryProblem {
          in = new Scanner(new File(fileName));   
       } catch (FileNotFoundException e) {
          e.printStackTrace();
+         System.out.println("File does not exist");
       }
          int n = in.nextInt();
          int e1 = in.nextInt();
