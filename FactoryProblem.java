@@ -4,10 +4,20 @@ import java.io.*;
 public class FactoryProblem {
    public static int findTime(int n, int e1, int e2, int x1, int x2, int[] a1, int[] a2, int[] t1, int[] t2) {
       //Should return the fastest time to exit the assembly lines
+      int[][] times = int[2][n];
+      int[][] paths = int[2][n];
+
+      times[0][0] = e1 + a1[0];
+      times[1][0] = e2 + a2[0];
+
+      for (int i = 1; i < n; i++) {
+         times[0][i] = min(times[0][i - 1] + a1[i], times[1][i - 1] + t1[i] + a2[i]);
+         times[1][i] = min(times[1][i - 1] + a2]i], times[0][i - 1] + t2[i] + a1[i]);
+      }
    }
 
-   public static int findRoute(int n, int e1, int e2, int x1, int x2, int[] a1, int[] a2, int[] t1, int[] t2) {
-      //Should return the route with the fastest time (using solution from findTime)
+   private static int min(int a, int b) {
+      return (a < b ? a : b);
    }
 
    public static void main(String[] args) {
