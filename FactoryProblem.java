@@ -6,18 +6,39 @@ public class FactoryProblem {
       //Should return the fastest time to exit the assembly lines
       int[][] times = int[2][n];
       int[][] paths = int[2][n];
+      int exitPath, exitTime;
 
       times[0][0] = e1 + a1[0];
       times[1][0] = e2 + a2[0];
 
       for (int i = 1; i < n; i++) {
-         times[0][i] = min(times[0][i - 1] + a1[i], times[1][i - 1] + t1[i] + a2[i]);
-         times[1][i] = min(times[1][i - 1] + a2]i], times[0][i - 1] + t2[i] + a1[i]);
+         times[0][i] = min(times[0][i - 1] + a1[i], times[1][i - 1] + t1[i] + a1[i], paths, 0, i);
+         times[1][i] = min(times[0][i - 1] + t2[i] + a2[i], times[1][i - 1] + a2[i], paths, 0, i);
       }
+
+      if (times[0][n - 1] + x1 < times[1][n - 1] + x2) {
+         exitTime = times[0][n - 1] + x1;
+         exitPath = 1;
+      }
+      else {
+         exitTime = times[1][n - 1] + x2;
+         exitPath = 2;
+      }
+
+      //WORK BACKWARDS THROUGH paths TO FIND ROUTE
+
+      return exitTime;
    }
 
-   private static int min(int a, int b) {
-      return (a < b ? a : b);
+   private static int min(int line1, int line2, int[][] paths, int lineNum, int station) {
+      if (line1 < line2) {
+         paths[lineNum][station] = 1;
+         return line1;
+      }
+      else {
+         paths[lineNum][station] = 2;
+         return line2;
+      }
    }
 
    public static void main(String[] args) {
