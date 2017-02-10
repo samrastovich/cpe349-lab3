@@ -39,4 +39,6 @@ public class FactoryProblem {
          }
          //TO DO: FINISH THIS
    }
+   
+   private static 
 }
