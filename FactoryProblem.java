@@ -4,6 +4,7 @@ import java.io.*;
 public class FactoryProblem {
    public static int findTime(int n, int e1, int e2, int x1, int x2, int[] a1, int[] a2, int[] t1, int[] t2) {
       //Should return the fastest time to exit the assembly lines
+      
    }
 
    public static int findRoute(int n, int e1, int e2, int x1, int x2, int[] a1, int[] a2, int[] t1, int[] t2) {
@@ -48,6 +49,4 @@ public class FactoryProblem {
          }
          //TO DO: FINISH THIS
    }
-   
-   private static 
 }
