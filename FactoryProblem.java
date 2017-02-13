@@ -4,16 +4,16 @@ import java.io.*;
 public class FactoryProblem {
    public static int findTime(int n, int e1, int e2, int x1, int x2, int[] a1, int[] a2, int[] t1, int[] t2) {
       //Should return the fastest time to exit the assembly lines
-      int[][] times = int[2][n];
-      int[][] paths = int[2][n];
+      int[][] times = new int[2][n];
+      int[][] paths = new int[2][n];
       int exitPath, exitTime;
 
       times[0][0] = e1 + a1[0];
       times[1][0] = e2 + a2[0];
 
       for (int i = 1; i < n; i++) {
-         times[0][i] = min(times[0][i - 1] + a1[i], times[1][i - 1] + t1[i] + a1[i], paths, 0, i);
-         times[1][i] = min(times[0][i - 1] + t2[i] + a2[i], times[1][i - 1] + a2[i], paths, 0, i);
+         times[0][i] = min(times[0][i - 1] + a1[i], times[1][i - 1] + t1[i - 1] + a1[i], paths, 0, i);
+         times[1][i] = min(times[0][i - 1] + t2[i - 1] + a2[i], times[1][i - 1] + a2[i], paths, 1, i);
       }
 
       if (times[0][n - 1] + x1 < times[1][n - 1] + x2) {
@@ -77,6 +77,7 @@ public class FactoryProblem {
          for (int i = 0; i < n - 1; i++) {
             t2[i] = in.nextInt();
          }
-         //TO DO: FINISH THIS
+         
+         System.out.println(findTime(n, e1, e2, x1, x2, a1, a2, t1, t2));
    }
 }
