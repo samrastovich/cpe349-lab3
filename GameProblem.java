@@ -12,6 +12,7 @@ public class GameProblem {
    public static void game(int n, int m, int[][] A) {
       int[][] S = new int[n][m];
       char[][] R = new char[n][m];
+      int[] maxRes;
       
       for (int i = n - 1; i >= 0; i--) {
          for (int j = m - 1; j >= 0; j--) {
@@ -20,25 +21,99 @@ public class GameProblem {
                S[i][j] += A[i][j];
             }
             else if (j == m - 1) {
-               S[i][j] += (max(S[i + 1][j], 0) + A[i][j]);
+               maxRes = max(S[i + 1][j], 0);
+               S[i][j] += (maxRes[0] + A[i][j]);
+               if (maxRes[1] == 0) {
+                  R[i][j] = DOWN;
+               }
+               else {
+                  R[i][j] = EXIT;
+               }
             }
             else if (i == n -1) {
-               S[i][j] += (max(S[i][j + 1], 0) + A[i][j]);
+               maxRes = max(S[i][j + 1], 0);
+               S[i][j] += (maxRes[0] + A[i][j]);
+               if (maxRes[1] == 0) {
+                  R[i][j] = RIGHT;
+               }
+               else {
+                  R[i][j] = EXIT;
+               }
             }
             else {
-               
+               maxRes = max(S[i + 1][j], S[i][j + 1]);
+               S[i][j] += (maxRes[0] + A[i][j]);
+               if (maxRes[1] == 0) {
+                  R[i][j] = DOWN;
+               }
+               else {
+                  R[i][j] = RIGHT;
+               }
             }
          }
       }
+
+      printResult(S,R);
+   }
+
+   private static void printResult(int[][] S, char[][] R) {
+      int max = S[0][0], curRow = 0, curCol = 0;
+      for (int i = 0; i < S.length; i++) {
+         for (int j = 0; j < S[0].length; j++) {
+            if (S[i][j] > max) {
+               max = S[i][j];
+               curRow = i;
+               curCol = j;
+            }
+         }
+      }
+
+      System.out.println("Best score: " + max);
+      System.out.print("Best route: [" + (curRow + 1) + "," + (curCol + 1) + "] to ");
+
+      while (R[curRow][curCol] != EXIT) {
+         if (R[curRow][curCol] == RIGHT) {
+            curCol++;
+         }
+         else {
+            curRow++;
+         }
+         System.out.print("[" + (curRow + 1) + "," + (curCol + 1) + "] to ");
+      }
+      System.out.println("exit");
+   }
+
+   private static void printIntMatrix(int[][] matrix) {
+      for (int i = 0; i < matrix.length; i++) {
+         for (int j = 0; j < matrix[0].length; j++) {
+            System.out.print(matrix[i][j] + " ");
+         }
+         System.out.println();
+      }
+   }
+
+   private static void printCharMatrix(char[][] matrix) {
+      for (int i = 0; i < matrix.length; i++) {
+         for (int j = 0; j < matrix[0].length; j++) {
+            System.out.print(matrix[i][j] + " ");
+         }
+         System.out.println();
+      }
    }
    
-   private static int max(int first, int second) {
+   private static int[] max(int first, int second) {
+      int[] res = new int[2];
+
       if (first > second) {
-         return first;
+         res[0] = first;
+         res[1] = 0;
       }
       else {
-         return second;
+         res[0] = second;
+         res[1] = 1;
       }
+
+      return res;
    }
    
    public static void main(String[] args) {
