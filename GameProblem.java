@@ -1,3 +1,8 @@
+/* Authors: Matt Bryan and Sam Rastovich
+ * IDs: mpbryan and srastovi
+ * Date: 2-15-17
+ * Assignment: Project 3 Part 2 (GameProblem)  */
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
