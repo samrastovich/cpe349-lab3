@@ -38,13 +38,13 @@ public class FactoryProblem {
 
       if (exitPath == 1) {
          printLine = 0;
-         printPath[5] = 1;
+         printPath[n - 1] = 1;
       }
       else {
          printLine = 1;
-         printPath[5] = 2;
+         printPath[n - 1] = 2;
       }
-      for (int i = 5; i > 0; i--) {
+      for (int i = n - 1; i > 0; i--) {
          if (paths[printLine][i] == 1) {
             printLine = 0;
             printPath[i - 1] = 1;
